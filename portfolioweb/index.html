@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"/&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
+<p class="p1">&lt;title&gt;Ian Huntington&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>*{margin:0;padding:0;box-sizing:border-box;cursor:none;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>:root{--cream:#F5F3EE;--black:#111;--gray:#888;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#d4d4d4;color:var(--black);}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* CURSOR */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#cursor-dot{position:fixed;width:8px;height:8px;background:#111;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,background .2s;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,0,0,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body.cursor-hover #cursor-dot{transform:translate(-50%,-50%) scale(2);}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(0,0,0,0.15);}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* PAGES */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.page{display:none;min-height:100vh;background:var(--cream);flex-direction:column;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.page.active{display:flex;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* HEADER */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.site-header{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:var(--cream);position:relative;z-index:10;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.site-header .name{font-size:14px;font-style:italic;font-weight:500;cursor:none;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.site-header .location{font-size:14px;font-style:italic;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* HERO */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero{flex:1;padding:40px 40px 60px;position:relative;display:flex;align-items:flex-start;overflow:hidden;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#rain-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero-text{position:relative;z-index:3;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero h1{font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero h1 em{font-style:italic;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero .role{font-size:13px;color:#444;margin-bottom:32px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.hero-btns{display:flex;gap:12px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border:1.5px solid var(--black);background:transparent;font-size:14px;font-weight:500;cursor:none;border-radius:3px;transition:background .2s,color .2s;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.btn:hover{background:var(--black);color:#fff;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#home .hero-illustration{position:absolute;right:40px;top:-10px;bottom:0;display:flex;align-items:center;z-index:3;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* FOOTER */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.site-footer{background:#d4d4d4;padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative;z-index:10;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.footer-links{display:flex;gap:28px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.footer-links a,.site-footer .copy{color:var(--black);text-decoration:none;font-style:italic;cursor:none;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.footer-links a:hover{text-decoration:underline;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* WORK */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.content{flex:1;padding:40px 40px 60px;max-width:860px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.section-label{font-size:clamp(24px,3.5vw,38px);font-weight:800;margin:48px 0 24px;letter-spacing:-0.5px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.section-label:first-child{margin-top:0;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job{display:flex;gap:24px;margin-bottom:36px;align-items:flex-start;padding:16px;border-radius:10px;transition:background .2s,transform .2s;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job:hover{background:rgba(0,0,0,0.03);transform:translateX(4px);}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job-logo{width:72px;height:72px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#eee;display:flex;align-items:center;justify-content:center;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job-logo img{width:100%;height:100%;object-fit:cover;border-radius:14px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job-info h3{font-size:17px;font-weight:700;margin-bottom:2px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job-info .role-title{font-size:14px;font-style:italic;color:#333;margin-bottom:6px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.job-info p{font-size:13px;line-height:1.6;color:#333;max-width:560px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.coming-soon{font-size:12px;font-style:italic;color:var(--gray);margin-top:6px;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* FADE IN ON SCROLL */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.fade-in.visible{opacity:1;transform:translateY(0);}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* ABOUT */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.bio-grid{display:grid;grid-template-columns:1fr 200px;gap:32px;margin-bottom:40px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.bio-text p{font-size:14px;line-height:1.75;color:#222;margin-bottom:14px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.bio-photos{display:flex;flex-direction:column;gap:14px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.bio-photos .photo-box{width:200px;height:160px;border-radius:6px;overflow:hidden;background:#ddd;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.bio-photos .photo-box img{width:100%;height:100%;object-fit:cover;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-item{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:12px;border-radius:10px;transition:background .2s;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-item:hover{background:rgba(0,0,0,0.03);}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-logo{width:60px;height:60px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:1px solid #ddd;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-logo img{width:100%;height:100%;object-fit:cover;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-info h4{font-size:15px;font-weight:700;margin-bottom:2px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.edu-info p{font-size:13px;font-style:italic;color:#444;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>.contact-list{display:flex;flex-direction:column;gap:16px;margin-top:8px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.contact-item{display:flex;align-items:center;gap:14px;font-size:14px;font-style:italic;font-weight:600;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.contact-item a{color:inherit;text-decoration:none;cursor:none;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.contact-item a:hover{text-decoration:underline;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.contact-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>/* ACTIVE NAV LINK */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.footer-links a.active-page{text-decoration:underline;}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>@media(max-width:640px){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#home .hero-illustration{display:none;}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bio-grid{grid-template-columns:1fr;}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.content{padding:24px 20px 40px;}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.site-header{padding:16px 20px;}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.site-footer{padding:18px 20px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div id="cursor-dot"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div id="cursor-ring"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- HOME --&gt;</p>
+<p class="p1">&lt;div id="home" class="page active"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="site-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="name" onclick="show('home')"&gt;Ian Huntington&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="location"&gt;California&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="hero"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;canvas id="rain-canvas"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="hero-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;The details everyone else skips — that's &lt;em&gt;Where Research Meets Design&lt;/em&gt;&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="role"&gt;UX Researcher – Human Factors and Design&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="hero-btns"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn" onclick="show('work')"&gt;Work →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="btn" onclick="show('about')"&gt;About →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="hero-illustration"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="width:260px;height:420px;border-radius:12px;overflow:hidden;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="portfolio images/Hero avatar.png" style="width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="site-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="copy"&gt;@2026&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="footer-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('work')" id="fn-work"&gt;Work&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')" id="fn-about"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')" id="fn-contact"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://www.linkedin.com/in/ian-huntington" target="_blank"&gt;Linkedin&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- WORK --&gt;</p>
+<p class="p1">&lt;div id="work" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="site-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="name" onclick="show('home')"&gt;Ian Huntington&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="location"&gt;California&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in"&gt;Work Experience&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-dutch" src="portfolio images/dutch.png" alt="Dutch Pet"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Dutch Pet inc.&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Intern – Consumer Insights&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Supports UX and consumer research that informs product, service, and CX decisions. Works on survey design, qualitative interviews, and research analysis to identify patterns in user needs and behaviors. Translates findings into insights that guide improvements in how people navigate, understand, and interact with a digital veterinary care platform.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo" style="background:#fff;border:1px solid #eee;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;svg viewBox="0 0 72 72" style="width:72px;height:72px;"&gt;&lt;rect width="72" height="72" rx="14" fill="#fff"/&gt;&lt;text x="36" y="30" text-anchor="middle" font-size="9" font-weight="800" fill="#c00" font-family="Arial"&gt;SHEARER'S&lt;/text&gt;&lt;text x="36" y="44" text-anchor="middle" font-size="9" font-weight="800" fill="#c00" font-family="Arial"&gt;SNACKS&lt;/text&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Shearer's Foods&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;USC Treatise Project (Consultant) – Market Research&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Designed and executed a mixed-methods study, including survey development, qualitative interviews, and quantitative analyses to identify distinct customer segments by needs, behaviors, and purchase patterns. Synthesized findings into data-driven insights, translating statistical results and consumer themes into executive-ready recommendations for senior stakeholders.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-pg" src="portfolio images/pg.png" alt="P&amp;G"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Procter &amp;amp; Gamble&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Graduate Student Consultant – UX Research&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Conducted mixed-methods UX research with cross-functional student teams, integrating qualitative and quantitative insights to inform product decisions and improve user-centered design. Designed and built a Figma prototype to support usability testing and validation, conducting user experience research to inform product decisions and improve user-centered design.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-schwab" src="portfolio images/schwab.png" alt="Charles Schwab"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Charles Schwab &lt;em&gt;(Unaffiliated)&lt;/em&gt;&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Graduate Student Consultant – UX Research&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Conducted end-to-end usability testing on the Charles Schwab investing platform, identifying key friction points and cognitive overload in stock research and screening tools. Synthesized insights into actionable recommendations that improved navigation clarity, and presented findings to Schwab UX researchers.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-uofo" src="portfolio images/great-seal-one-color-uo-green-800x800@1x.jpg 2.png" alt="University of Oregon"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Human Factors Aviation Safety Lab&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Lab Assistant – University of Oregon&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Analyzed Boeing 737 Max "stick shaker" incident data to identify incorrect pilot responses that contributed to error, helping inform safety-related research insights. Also converted qualitative safety reports into quantitative datasets for an airline merger study, uncovering trends in post-merger incidents and strengthening the overall analysis.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-uofo2" src="portfolio images/great-seal-one-color-uo-green-800x800@1x.jpg 2.png" alt="University of Oregon"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Psychological Statistics&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Peer Tutor Coordinator – University of Oregon&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Directed the psychology department's tutoring program by leading weekly meetings, coordinating communication between faculty and tutors, and improving program effectiveness through feedback-driven adjustments. Simplified complex statistical concepts and provided one-on-one guidance in Jamovi and SPSS.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in"&gt;Other Projects&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-usc" src="portfolio images/usc.png" alt="USC"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Manipulating Consumer Agency to Boost Trust in AI-Driven Products&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Literature Review – University of Southern California&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Consumer trust in AI is often weakened by concerns about data privacy and loss of control. This literature review argues that increasing users' sense of agency—through design choices on AI product landing pages—can strengthen trust, perceived autonomy, and willingness to use AI tools.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in"&gt;Ongoing Projects&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="job fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-logo"&gt;&lt;img id="logo-polldip" src="portfolio images/PD.png" alt="PollDip"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="job-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;PollDip&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="role-title"&gt;Founder / Designer&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;A workplace engagement platform.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="coming-soon"&gt;Coming soon.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="site-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="copy"&gt;@2026&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="footer-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('work')"&gt;Work&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://www.linkedin.com/in/ian-huntington" target="_blank"&gt;Linkedin&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ABOUT --&gt;</p>
+<p class="p1">&lt;div id="about" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="site-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="name" onclick="show('home')"&gt;Ian Huntington&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="location"&gt;California&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in" style="margin-top:0;"&gt;About Ian Huntington&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bio-grid fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bio-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;I'm an emerging UX researcher with a background in psychology and behavioral research, focused on understanding how people interact with online platforms and digital tools. My interest in research began at the University of Oregon, where I earned my Bachelor of Science in Psychology and worked in a human factors aviation safety lab analyzing incident data and studying how people interact with complex systems.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Those experiences sparked my interest in how research can uncover patterns in human behavior and translate them into meaningful insights. Since then, I've become particularly interested in how consumers interact with AI-driven products and how factors like trust, control, and transparency influence those experiences.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;While my background is rooted in research, I've expanded more into UX and interface design, using tools like Figma to better connect research insights with practical design decisions.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;I'm originally from Salem, Oregon and graduated high school in 2020. Outside of research and design, I love spending time outdoors, am a (very intense) Chicago sports fan, and enjoy spending time with friends and family.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bio-photos"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="photo-box"&gt;&lt;img id="photo1" src="portfolio images/Screenshot 2026-03-16 at 13.56.10 1.png" alt="Ian"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="photo-box"&gt;&lt;img id="photo2" src="portfolio images/Screenshot 2026-03-16 at 13.58.16 1.png" alt="Ian"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in"&gt;Education&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="edu-item fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="edu-logo"&gt;&lt;img id="edu-usc" src="portfolio images/usc.png" alt="USC"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="edu-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;University of Southern California&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Masters of Science – Applied (Consumer) Psychology (2025–2026)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="edu-item fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="edu-logo"&gt;&lt;img id="edu-uofo" src="portfolio images/great-seal-one-color-uo-green-800x800@1x.jpg 2.png" alt="U of O"/&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="edu-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;University of Oregon&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Bachelors of Science – Psychology (2020–2024)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label fade-in"&gt;Contact me&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="contact-list fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="contact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="contact-icon" style="background:#0A66C2;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none"&gt;&lt;path d="M16.667 2H3.333C2.597 2 2 2.597 2 3.333v13.334C2 17.403 2.597 18 3.333 18h13.334C17.403 18 18 17.403 18 16.667V3.333C18 2.597 17.403 2 16.667 2ZM6.667 15H4.444V8h2.223v7Zm-1.11-7.933a1.29 1.29 0 1 1 0-2.578 1.29 1.29 0 0 1 0 2.578ZM15.556 15H13.33v-3.4c0-.81-.016-1.852-1.127-1.852-1.13 0-1.302.882-1.302 1.793V15H8.667V8h2.133v.956h.03c.297-.563.99-1.127 1.985-1.127 2.124 0 2.741 1.397 2.741 3.214V15Z" fill="#fff"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://www.linkedin.com/in/ian-huntington" target="_blank"&gt;Linkedin&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="contact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="contact-icon" style="background:#fff;border:1px solid #ddd;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;svg width="20" height="16" viewBox="0 0 20 16" fill="none"&gt;&lt;path d="M18 0H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V2l8 5 8-5v2Z" fill="#EA4335"/&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="mailto:ianhuntington08@gmail.com"&gt;ianhuntington08@gmail.com&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="site-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="copy"&gt;@2026&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="footer-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('work')"&gt;Work&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a onclick="show('about')"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://www.linkedin.com/in/ian-huntington" target="_blank"&gt;Linkedin&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// ── Cursor ──</p>
+<p class="p1">const dot = document.getElementById('cursor-dot');</p>
+<p class="p1">const ring = document.getElementById('cursor-ring');</p>
+<p class="p1">let ringX=0,ringY=0,mouseX=0,mouseY=0;</p>
+<p class="p1">document.addEventListener('mousemove',e=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>mouseX=e.clientX; mouseY=e.clientY;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';</p>
+<p class="p1">});</p>
+<p class="p1">(function animateRing(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>ringX+=(mouseX-ringX)*0.12; ringY+=(mouseY-ringY)*0.12;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>ring.style.left=ringX+'px'; ring.style.top=ringY+'px';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>requestAnimationFrame(animateRing);</p>
+<p class="p1">})();</p>
+<p class="p1">function addHover(sel){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll(sel).forEach(el=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>el.addEventListener('mouseenter',()=&gt;document.body.classList.add('cursor-hover'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>el.addEventListener('mouseleave',()=&gt;document.body.classList.remove('cursor-hover'));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p1">addHover('a, button, .btn, .name, .job');</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Rain ──</p>
+<p class="p1">const canvas=document.getElementById('rain-canvas');</p>
+<p class="p1">const ctx=canvas.getContext('2d');</p>
+<p class="p1">let drops=[];</p>
+<p class="p2"><br></p>
+<p class="p1">function resizeCanvas(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>canvas.width=canvas.parentElement.offsetWidth;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>canvas.height=canvas.parentElement.offsetHeight;</p>
+<p class="p1">}</p>
+<p class="p1">function initDrops(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>drops=[];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>for(let i=0;i&lt;130;i++){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const base=Math.random()*0.18+0.18;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const spd=Math.random()*6+8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drops.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>len:Math.random()*22+10,speed:spd,maxSpeed:spd,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opacity:base,baseOpacity:base,width:Math.random()*1+0.5});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p1">function drawRain(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>ctx.clearRect(0,0,canvas.width,canvas.height);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>drops.forEach(d=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.moveTo(d.x,d.y);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.lineTo(d.x-d.len*0.15,d.y+d.len);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.strokeStyle=`rgba(100,120,140,${d.opacity})`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.lineWidth=d.width; ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>d.y+=d.speed; d.x-=d.speed*0.15;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(d.y&gt;canvas.height){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>d.y=-d.len; d.x=Math.random()*canvas.width;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(d.opacity&lt;d.baseOpacity) d.opacity=Math.min(d.opacity+0.02,d.baseOpacity);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>requestAnimationFrame(drawRain);</p>
+<p class="p1">}</p>
+<p class="p1">resizeCanvas(); initDrops(); drawRain();</p>
+<p class="p1">window.addEventListener('resize',()=&gt;{resizeCanvas();initDrops();});</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Scroll fade-in ──</p>
+<p class="p1">const observer=new IntersectionObserver(entries=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>entries.forEach(e=&gt;{if(e.isIntersecting){e.target.classList.add('visible');}});</p>
+<p class="p1">},{threshold:0.1});</p>
+<p class="p1">function observeFadeIns(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('.fade-in:not(.visible)').forEach(el=&gt;observer.observe(el));</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Page transitions ──</p>
+<p class="p1">function show(id){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const current=document.querySelector('.page.active');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const next=document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(current===next) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(current.id==='home'){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let t=0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const slowDown=setInterval(()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>t++;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drops.forEach(d=&gt;{d.speed=Math.max(d.speed-0.18,0);d.opacity=Math.max(d.opacity-0.008,0);});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(t&gt;60) clearInterval(slowDown);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},30);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>current.style.transition='opacity 0.5s ease';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>current.style.opacity='0';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>setTimeout(()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>current.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>current.style.opacity=''; current.style.transition='';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>next.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>next.style.opacity='0';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>next.style.transition='opacity 0.5s ease';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.scrollTo(0,0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>observeFadeIns();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(id==='home'){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drops.forEach(d=&gt;{d.speed=0;d.opacity=0;d.y=Math.random()*canvas.height;});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let t=0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const buildUp=setInterval(()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>t++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drops.forEach(d=&gt;{d.speed=Math.min(d.speed+0.15,d.maxSpeed);d.opacity=Math.min(d.opacity+0.006,d.baseOpacity);});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(t&gt;80) clearInterval(buildUp);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},30);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>requestAnimationFrame(()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>next.style.opacity='1';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setTimeout(()=&gt;{next.style.opacity='';next.style.transition='';},500);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>},480);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Initial fade-ins on load</p>
+<p class="p1">observeFadeIns();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
