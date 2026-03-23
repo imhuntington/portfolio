@@ -71,7 +71,11 @@
   .bio-photos .photo-box{width:220px;height:180px;border-radius:8px;overflow:hidden;background:#ddd;}
   .bio-photos .photo-box img{width:100%;height:100%;object-fit:cover;object-position:center;}
 
-  .edu-item{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:12px;border-radius:10px;transition:background .2s;}
+  .skills-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:8px;}
+  .skills-row{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:12px 0;border-top:1px solid #e8e5df;}
+  .skills-row:last-child{border-bottom:1px solid #e8e5df;}
+  .skills-category{font-size:13px;font-weight:700;color:#111;padding-top:2px;}
+  .skills-list{font-size:13px;line-height:1.7;color:#444;}
   .edu-item:hover{background:rgba(0,0,0,0.03);}
   .edu-logo{width:60px;height:60px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:1px solid #ddd;}
   .edu-logo img{width:100%;height:100%;object-fit:cover;}
@@ -245,6 +249,22 @@
       <div class="bio-photos">
         <div class="photo-box"><img id="photo1" src="portfolio-images/photo1.png" alt="Ian" style="object-position:50% 20%;"/></div>
         <div class="photo-box"><img id="photo2" src="portfolio-images/photo2.png" alt="Ian" style="object-position:center;"/></div>
+      </div>
+    </div>
+
+    <div class="section-label fade-in">Skills</div>
+    <div class="skills-grid fade-in">
+      <div class="skills-row">
+        <div class="skills-category">UX Methods</div>
+        <div class="skills-list">User Interviews, Journey Mapping, Survey Design, Experimental Methods, Data Visualization, Thematic Coding, A/B Testing, Unmoderated Usability Testing</div>
+      </div>
+      <div class="skills-row">
+        <div class="skills-category">Tools & Technical</div>
+        <div class="skills-list">Figma, SPSS, Qualtrics, Alida, Google Workspace, Microsoft Office, Firebase, GitHub, Vercel, Prompt Engineering</div>
+      </div>
+      <div class="skills-row">
+        <div class="skills-category">Professional</div>
+        <div class="skills-list">Report Writing, Leadership, Program Coordination, Project Management, Presenting</div>
       </div>
     </div>
 
