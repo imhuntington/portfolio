@@ -34,8 +34,8 @@ header{display:flex;justify-content:space-between;align-items:center;padding:20p
 .btn:hover{background:var(--black);color:#fff;}
 .hero-img{position:absolute;right:44px;top:0;bottom:0;display:flex;align-items:center;z-index:2;}
 .hero-img img{height:400px;width:auto;mix-blend-mode:multiply;}
-@media(max-width:800px){.hero-img img{height:280px;}right:20px;}
-@media(max-width:540px){.hero-img{display:none;}}
+@media(max-width:800px){.hero-img{right:20px;}.hero-img img{height:280px;}}
+@media(max-width:540px){.hero-img{position:relative;right:auto;top:auto;bottom:auto;display:flex;justify-content:center;width:100%;margin-top:52px;}.hero-img img{height:300px;}}
 
 footer{background:#d4d4d4;padding:20px 44px;display:flex;justify-content:space-between;align-items:center;font-size:12px;}
 .fnav{display:flex;gap:26px;}
@@ -89,9 +89,9 @@ footer{background:#d4d4d4;padding:20px 44px;display:flex;justify-content:space-b
 
 @media(max-width:640px){
   header,footer{padding:16px 20px;}
-  .content,.hero{padding:28px 20px 40px;}
+  .content,.hero{padding:28px 20px 0;}
   .bio-wrap{grid-template-columns:1fr;}
-  .hero-img{display:none;}
+  .hero{flex-direction:column;}
 }
 </style>
 </head>
