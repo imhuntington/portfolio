@@ -38,7 +38,6 @@
   #home .hero-illustration img{height:420px;width:auto;}
   @media(max-width:900px){#home .hero-illustration{right:20px;} #home .hero-illustration img{height:320px;}}
   @media(max-width:700px){#home .hero-illustration{right:10px;} #home .hero-illustration img{height:240px;}}
-  @media(max-width:500px){#home .hero-illustration{display:none;}}
 
   /* FOOTER */
   .site-footer{background:#d4d4d4;padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative;z-index:10;}
@@ -96,7 +95,10 @@
   .footer-links a.active-page{text-decoration:underline;}
 
   @media(max-width:640px){
-    #home .hero-illustration{display:none;}
+    #home .hero{flex-direction:column;align-items:center;}
+    #home .hero-text{align-self:flex-start;}
+    #home .hero-illustration{position:relative;right:auto;top:auto;bottom:auto;justify-content:center;margin-top:24px;}
+    #home .hero-illustration img{height:280px;}
     .bio-grid{grid-template-columns:1fr;}
     .content{padding:24px 20px 40px;}
     .site-header{padding:16px 20px;}
@@ -126,7 +128,7 @@
       </div>
     </div>
     <div class="hero-illustration">
-      <img src="portfolio-images/hero-avatar.png" style="height:420px;width:auto;mix-blend-mode:multiply;"/>
+      <img src="portfolio-images/hero-avatar.png" style="mix-blend-mode:multiply;"/>
     </div>
   </div>
   <footer class="site-footer">
