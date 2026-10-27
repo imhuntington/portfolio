@@ -30,7 +30,7 @@
   #home .hero-text{position:relative;z-index:3;}
   #home .hero h1{font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;}
   #home .hero h1 em{font-style:italic;}
-  #home .hero .role{font-size:13px;color:#444;margin-bottom:32px;}
+  #home .hero .role{font-size:18px;color:#444;margin-bottom:32px;}
   .hero-btns{display:flex;gap:12px;}
   .btn{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border:1.5px solid var(--black);background:transparent;font-size:14px;font-weight:500;cursor:none;border-radius:3px;transition:background .2s,color .2s;}
   .btn:hover{background:var(--black);color:#fff;}
@@ -38,7 +38,7 @@
   #home .hero-illustration img{height:420px;width:auto;}
   @media(max-width:900px){#home .hero-illustration{right:20px;} #home .hero-illustration img{height:320px;}}
   @media(max-width:700px){#home .hero-illustration{right:10px;} #home .hero-illustration img{height:240px;}}
-  @media(max-width:640px){#home .hero{flex-direction:column;} #home .hero-illustration{position:static;align-self:center;margin:24px 0 0;} #home .hero-illustration img{height:200px;}}
+  @media(max-width:500px){#home .hero-illustration{display:none;}}
 
   /* FOOTER */
   .site-footer{background:#d4d4d4;padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative;z-index:10;}
@@ -56,10 +56,10 @@
   .job-logo{width:72px;height:72px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#eee;display:flex;align-items:center;justify-content:center;}
   .job-logo img{width:100%;height:100%;object-fit:cover;border-radius:14px;}
   .job-info h3{font-size:17px;font-weight:700;margin-bottom:2px;}
-  .current-tag{display:inline-block;font-size:11px;font-weight:500;font-style:italic;padding:2px 8px;margin-left:8px;border:1.5px solid var(--black);border-radius:3px;vertical-align:middle;}
   .job-info .role-title{font-size:14px;font-style:italic;color:#333;margin-bottom:6px;}
   .job-info p{font-size:13px;line-height:1.6;color:#333;max-width:560px;}
-  .project-link{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--black);text-decoration:none;border-bottom:1px solid var(--black);padding-bottom:1px;transition:opacity .2s;cursor:none;}
+  .current-tag{display:inline-block;font-size:11px;font-weight:500;font-style:italic;padding:2px 8px;margin-left:8px;border:1.5px solid var(--black);border-radius:3px;vertical-align:middle;}
+  .project-link{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--black);text-decoration:none;border-bottom:1px solid var(--black);padding-bottom:1px;transition:opacity .2s;}
   .project-link:hover{opacity:0.5;}
 
   /* FADE IN ON SCROLL */
@@ -77,7 +77,9 @@
   .skills-row{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:12px 0;border-top:1px solid #e8e5df;}
   .skills-row:last-child{border-bottom:1px solid #e8e5df;}
   .skills-category{font-size:13px;font-weight:700;color:#111;padding-top:2px;}
-  .skills-list{font-size:13px;line-height:1.7;color:#444;}
+  .skills-list{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;line-height:1.7;color:#444;}
+  .skill{padding:3px 12px;border:1px solid #d8d4cb;border-radius:999px;background:rgba(255,255,255,0.6);font-size:12.5px;line-height:1.6;color:#333;}
+  .skill.hero{background:var(--black);border-color:var(--black);color:#fff;font-weight:600;}
   .edu-item:hover{background:rgba(0,0,0,0.03);}
   .edu-logo{width:60px;height:60px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:1px solid #ddd;}
   .edu-logo img{width:100%;height:100%;object-fit:cover;}
@@ -94,6 +96,7 @@
   .footer-links a.active-page{text-decoration:underline;}
 
   @media(max-width:640px){
+    #home .hero-illustration{display:none;}
     .bio-grid{grid-template-columns:1fr;}
     .content{padding:24px 20px 40px;}
     .site-header{padding:16px 20px;}
@@ -110,20 +113,20 @@
 <div id="home" class="page active">
   <header class="site-header">
     <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">San Francisco</span>
+    <span class="location">California</span>
   </header>
   <div class="hero">
     <canvas id="rain-canvas"></canvas>
     <div class="hero-text">
-      <h1>The details everyone else skips — that's <em>Where Research Meets Design</em></h1>
-      <p class="role">UX Researcher – Human Factors and Design</p>
+      <h1>Building Through <em>Research</em></h1>
+      <p class="role">User Researcher – Product, Design, and Human Factors</p>
       <div class="hero-btns">
         <button class="btn" onclick="show('work')">Work →</button>
         <button class="btn" onclick="show('about')">About →</button>
       </div>
     </div>
     <div class="hero-illustration">
-      <img src="portfolio-images/hero-avatar.png" style="mix-blend-mode:multiply;"/>
+      <img src="portfolio-images/hero-avatar.png" style="height:420px;width:auto;mix-blend-mode:multiply;"/>
     </div>
   </div>
   <footer class="site-footer">
@@ -141,7 +144,7 @@
 <div id="work" class="page">
   <header class="site-header">
     <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">San Francisco</span>
+    <span class="location">California</span>
   </header>
   <div class="content">
     <div class="section-label fade-in">Work Experience</div>
@@ -258,16 +261,15 @@
 <div id="about" class="page">
   <header class="site-header">
     <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">San Francisco</span>
+    <span class="location">California</span>
   </header>
   <div class="content">
     <div class="section-label fade-in" style="margin-top:0;">About Ian Huntington</div>
     <div class="bio-grid fade-in">
       <div class="bio-text">
-        <p>I'm an emerging UX researcher with a background in psychology and behavioral research, focused on understanding how people interact with online platforms and digital tools. My interest in research began at the University of Oregon, where I earned my Bachelor of Science in Psychology and worked in a human factors aviation safety lab analyzing incident data and studying how people interact with complex systems.</p>
-        <p>Those experiences sparked my interest in how research can uncover patterns in human behavior and translate them into meaningful insights. Since then, I've become particularly interested in how consumers interact with AI-driven products and how factors like trust, control, and transparency influence those experiences.</p>
-        <p>While my background is rooted in research, I've expanded more into UX and interface design, using tools like Figma to better connect research insights with practical design decisions.</p>
-        <p>I'm originally from Salem, Oregon and graduated high school in 2020. Outside of research and design, I love spending time outdoors, am a (very intense) Chicago sports fan, and enjoy spending time with friends and family.</p>
+        <p>I'm a user researcher blending behavioral psychology with design and product execution. With an M.S. in Applied (Consumer) Psychology from USC, my research journey started with aviation human factors at the University of Oregon and expanded into conducting mixed-methods studies for startups like Sleeper and Dutch Pet.</p>
+        <p>I specialize in quantitative and qualitative research—including competitor benchmarking, A/B testing, and survey design—while leveraging modern AI tools and full-stack web development to rapidly prototype and test ideas.</p>
+        <p>When I’m not working, you can usually find me outdoors, watching any sport on TV, or spending time with friends and family. Growing up in sports taught me to be a team player, and I love collaborating with people who have the same drive to deliver quality products as I do!</p>
       </div>
       <div class="bio-photos">
         <div class="photo-box"><img id="photo1" src="portfolio-images/photo1.png" alt="Ian" style="object-position:50% 20%;"/></div>
@@ -278,16 +280,24 @@
     <div class="section-label fade-in">Skills</div>
     <div class="skills-grid fade-in">
       <div class="skills-row">
-        <div class="skills-category">UX Methods</div>
-        <div class="skills-list">User Interviews, Journey Mapping, Survey Design, Experimental Methods, Data Visualization, Thematic Coding, A/B Testing, Unmoderated Usability Testing</div>
+        <div class="skills-category">Research Methods</div>
+        <div class="skills-list"><span class="skill">User Interviews</span><span class="skill hero">Usability Testing</span><span class="skill">Competitor Audits</span><span class="skill">Journey Mapping</span><span class="skill hero">Survey Design</span><span class="skill">Thematic Coding</span></div>
       </div>
       <div class="skills-row">
-        <div class="skills-category">Tools & Technical</div>
-        <div class="skills-list">Figma, SPSS, Qualtrics, Alida, Google Workspace, Microsoft Office, Firebase, GitHub, Vercel, Prompt Engineering</div>
+        <div class="skills-category">Analytics & Experimentation</div>
+        <div class="skills-list"><span class="skill hero">A/B Testing</span><span class="skill">Statistical Analysis</span><span class="skill">Data Visualization</span><span class="skill">SPSS</span><span class="skill">Qualtrics</span><span class="skill">Alida</span><span class="skill">Amplitude</span><span class="skill">Braze</span></div>
       </div>
       <div class="skills-row">
-        <div class="skills-category">Professional</div>
-        <div class="skills-list">Report Writing, Leadership, Program Coordination, Project Management, Presenting</div>
+        <div class="skills-category">Design & Development</div>
+        <div class="skills-list"><span class="skill hero">Figma</span><span class="skill">Firebase</span><span class="skill">GitHub</span><span class="skill">Vercel</span></div>
+      </div>
+      <div class="skills-row">
+        <div class="skills-category">Artificial Intelligence</div>
+        <div class="skills-list"><span class="skill hero">Claude Code</span><span class="skill">Cursor</span></div>
+      </div>
+      <div class="skills-row">
+        <div class="skills-category">Collaboration & Leadership</div>
+        <div class="skills-list"><span class="skill">Report Writing</span><span class="skill">Presenting</span><span class="skill">Project Management</span><span class="skill">Leadership</span><span class="skill">Notion</span><span class="skill">Google Workspace</span><span class="skill">Microsoft Office</span></div>
       </div>
     </div>
 
