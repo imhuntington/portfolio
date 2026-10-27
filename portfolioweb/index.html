@@ -79,6 +79,7 @@
   .skills-list{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;line-height:1.7;color:#444;}
   .skill{padding:3px 12px;border:1px solid #d8d4cb;border-radius:999px;background:rgba(255,255,255,0.6);font-size:12.5px;line-height:1.6;color:#333;}
   .skill.hero{background:var(--black);border-color:var(--black);color:#fff;font-weight:600;}
+  .edu-item{margin-bottom:28px;}
   .edu-item:hover{background:rgba(0,0,0,0.03);}
   .edu-logo{width:60px;height:60px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:1px solid #ddd;}
   .edu-logo img{width:100%;height:100%;object-fit:cover;}
@@ -137,7 +138,7 @@
     <nav class="footer-links">
       <a onclick="show('work')" id="fn-work">Work</a>
       <a onclick="show('about')" id="fn-about">About</a>
-      <a onclick="show('about')" id="fn-contact">Contact</a>
+      <a onclick="show('about','contact')" id="fn-contact">Contact</a>
       <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
     </nav>
   </footer>
@@ -264,7 +265,7 @@
     <nav class="footer-links">
       <a onclick="show('work')">Work</a>
       <a onclick="show('about')">About</a>
-      <a onclick="show('about')">Contact</a>
+      <a onclick="show('about','contact')">Contact</a>
       <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
     </nav>
   </footer>
@@ -330,7 +331,7 @@
       </div>
     </div>
 
-    <div class="section-label fade-in">Contact me</div>
+    <div class="section-label fade-in" id="contact">Contact me</div>
     <div class="contact-list fade-in">
       <div class="contact-item">
         <div class="contact-icon" style="background:#0A66C2;">
@@ -351,7 +352,7 @@
     <nav class="footer-links">
       <a onclick="show('work')">Work</a>
       <a onclick="show('about')">About</a>
-      <a onclick="show('about')">Contact</a>
+      <a onclick="show('about','contact')">Contact</a>
       <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
     </nav>
   </footer>
@@ -426,10 +427,13 @@ function observeFadeIns(){
 }
 
 // ── Page transitions ──
-function show(id){
+function show(id,anchor){
   const current=document.querySelector('.page.active');
   const next=document.getElementById(id);
-  if(current===next) return;
+  if(current===next){
+    if(anchor) document.getElementById(anchor).scrollIntoView({behavior:'smooth'});
+    return;
+  }
 
   if(current.id==='home'){
     let t=0;
@@ -450,6 +454,7 @@ function show(id){
     next.style.opacity='0';
     next.style.transition='opacity 0.5s ease';
     window.scrollTo(0,0);
+    if(anchor) document.getElementById(anchor).scrollIntoView();
     observeFadeIns();
 
     if(id==='home'){
