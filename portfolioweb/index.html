@@ -4,16 +4,30 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ian Huntington</title>
+<meta name="description" content="Ian Huntington – User Researcher in product, design, and human factors. Work, projects, and contact."/>
+<meta property="og:title" content="Ian Huntington – User Researcher"/>
+<meta property="og:description" content="User Researcher in product, design, and human factors."/>
+<meta property="og:type" content="website"/>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;cursor:none;}
+  *{margin:0;padding:0;box-sizing:border-box;}
   :root{--cream:#F5F3EE;--black:#111;--gray:#888;}
   body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#d4d4d4;color:var(--black);}
 
-  /* CURSOR */
-  #cursor-dot{position:fixed;width:8px;height:8px;background:#111;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,background .2s;}
-  #cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,0,0,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+  /* CURSOR (mouse/trackpad only) */
+  #cursor-dot,#cursor-ring{display:none;}
+  #cursor-dot{position:fixed;width:8px;height:8px;background:#111;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,background .2s,opacity .2s;opacity:0;}
+  #cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,0,0,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s,opacity .2s;opacity:0;}
+  body.cursor-visible #cursor-dot,body.cursor-visible #cursor-ring{opacity:1;}
   body.cursor-hover #cursor-dot{transform:translate(-50%,-50%) scale(2);}
   body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(0,0,0,0.15);}
+  @media (hover:hover) and (pointer:fine){
+    #cursor-dot,#cursor-ring{display:block;}
+    body, a, button{cursor:none;}
+    p, h1, h3, h4, .role-title, .skill{cursor:text;}
+  }
+
+  /* FOCUS */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--black);outline-offset:3px;border-radius:3px;}
 
   /* PAGES */
   .page{display:none;min-height:100vh;background:var(--cream);flex-direction:column;}
@@ -21,8 +35,10 @@
 
   /* HEADER */
   .site-header{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:var(--cream);position:relative;z-index:10;}
-  .site-header .name{font-size:14px;font-style:italic;font-weight:500;cursor:none;}
-  .site-header .location{font-size:14px;font-style:italic;}
+  .site-header .name{font-size:14px;font-style:italic;font-weight:500;color:var(--black);text-decoration:none;}
+  .header-links{display:flex;gap:24px;font-size:14px;}
+  .header-links a{color:var(--black);text-decoration:none;font-style:italic;}
+  .header-links a:hover,.header-links a[aria-current="page"]{text-decoration:underline;}
 
   /* HERO */
   #home .hero{flex:1;padding:40px 40px 60px;position:relative;display:flex;align-items:flex-start;overflow:hidden;}
@@ -32,7 +48,7 @@
   #home .hero h1 em{font-style:italic;}
   #home .hero .role{font-size:18px;color:#444;margin-bottom:32px;}
   .hero-btns{display:flex;gap:12px;}
-  .btn{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border:1.5px solid var(--black);background:transparent;font-size:14px;font-weight:500;cursor:none;border-radius:3px;transition:background .2s,color .2s;}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border:1.5px solid var(--black);background:transparent;color:var(--black);text-decoration:none;font-size:14px;font-weight:500;border-radius:3px;transition:background .2s,color .2s;}
   .btn:hover{background:var(--black);color:#fff;}
   #home .hero-illustration{position:absolute;right:100px;top:-10px;bottom:0;display:flex;align-items:center;z-index:3;}
   #home .hero-illustration img{height:420px;width:auto;}
@@ -42,7 +58,7 @@
   /* FOOTER */
   .site-footer{background:#d4d4d4;padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative;z-index:10;}
   .footer-links{display:flex;gap:28px;}
-  .footer-links a,.site-footer .copy{color:var(--black);text-decoration:none;font-style:italic;cursor:none;}
+  .footer-links a,.site-footer .copy{color:var(--black);text-decoration:none;font-style:italic;}
   .footer-links a:hover{text-decoration:underline;}
 
   /* WORK */
@@ -50,8 +66,7 @@
   .section-label{font-size:clamp(24px,3.5vw,38px);font-weight:800;margin:48px 0 24px;letter-spacing:-0.5px;}
   .section-label:first-child{margin-top:0;}
 
-  .job{display:flex;gap:24px;margin-bottom:36px;align-items:flex-start;padding:16px;border-radius:10px;transition:background .2s,transform .2s;}
-  .job:hover{background:rgba(0,0,0,0.03);transform:translateX(4px);}
+  .job{display:flex;gap:24px;margin-bottom:36px;align-items:flex-start;padding:16px;border-radius:10px;}
   .job-logo{width:72px;height:72px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#eee;display:flex;align-items:center;justify-content:center;}
   .job-logo img{width:100%;height:100%;object-fit:cover;border-radius:14px;}
   .job-info h3{font-size:17px;font-weight:700;margin-bottom:2px;}
@@ -79,8 +94,7 @@
   .skills-list{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;line-height:1.7;color:#444;}
   .skill{padding:3px 12px;border:1px solid #d8d4cb;border-radius:999px;background:rgba(255,255,255,0.6);font-size:12.5px;line-height:1.6;color:#333;}
   .skill.hero{background:var(--black);border-color:var(--black);color:#fff;font-weight:600;}
-  .edu-item{margin-bottom:28px;}
-  .edu-item:hover{background:rgba(0,0,0,0.03);}
+  .edu-item{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
   .edu-logo{width:60px;height:60px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:1px solid #ddd;}
   .edu-logo img{width:100%;height:100%;object-fit:cover;}
   .edu-info h4{font-size:15px;font-weight:700;margin-bottom:2px;}
@@ -88,14 +102,26 @@
 
   .contact-list{display:flex;flex-direction:column;gap:16px;margin-top:8px;}
   .contact-item{display:flex;align-items:center;gap:14px;font-size:14px;font-style:italic;font-weight:600;}
-  .contact-item a{color:inherit;text-decoration:none;cursor:none;}
+  .contact-item a{color:inherit;text-decoration:none;}
   .contact-item a:hover{text-decoration:underline;}
   .contact-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
   /* ACTIVE NAV LINK */
-  .footer-links a.active-page{text-decoration:underline;}
+  .footer-links a[aria-current="page"]{text-decoration:underline;}
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce){
+    #rain-canvas{display:none;}
+    .fade-in{opacity:1;transform:none;transition:none;}
+    *{transition:none !important;}
+  }
 
   @media(max-width:640px){
+    .skills-row{grid-template-columns:1fr;gap:8px;}
+    .header-links{gap:16px;}
+    .site-header{flex-wrap:wrap;gap:8px;}
+    .site-footer{flex-direction:column-reverse;align-items:flex-start;gap:12px;}
+    .footer-links{flex-wrap:wrap;gap:20px;}
     #home .hero{flex-direction:column;align-items:center;}
     #home .hero-text{align-self:flex-start;}
     #home .hero-illustration{position:relative;right:auto;top:auto;bottom:auto;justify-content:center;margin-top:24px;}
@@ -116,8 +142,12 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <header class="site-header">
-    <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">California</span>
+    <a class="name" href="#home">Ian Huntington</a>
+    <nav class="header-links" aria-label="Main">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
   </header>
   <div class="hero">
     <canvas id="rain-canvas"></canvas>
@@ -125,21 +155,21 @@
       <h1>Building Through <em>Research</em></h1>
       <p class="role">User Researcher – Product, Design, and Human Factors</p>
       <div class="hero-btns">
-        <button class="btn" onclick="show('work')">Work →</button>
-        <button class="btn" onclick="show('about')">About →</button>
+        <a class="btn" href="#work">Work →</a>
+        <a class="btn" href="#about">About →</a>
       </div>
     </div>
     <div class="hero-illustration">
-      <img src="portfolio-images/hero-avatar.png" style="mix-blend-mode:multiply;"/>
+      <img src="portfolio-images/hero-avatar.png" alt="Illustration of Ian" style="mix-blend-mode:multiply;"/>
     </div>
   </div>
   <footer class="site-footer">
-    <span class="copy">@2026</span>
-    <nav class="footer-links">
-      <a onclick="show('work')" id="fn-work">Work</a>
-      <a onclick="show('about')" id="fn-about">About</a>
-      <a onclick="show('about','contact')" id="fn-contact">Contact</a>
-      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
+    <span class="copy">© 2026 · California</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </footer>
 </div>
@@ -147,8 +177,12 @@
 <!-- WORK -->
 <div id="work" class="page">
   <header class="site-header">
-    <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">California</span>
+    <a class="name" href="#home">Ian Huntington</a>
+    <nav class="header-links" aria-label="Main">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
   </header>
   <div class="content">
     <div class="section-label fade-in">Work Experience</div>
@@ -165,7 +199,7 @@
     <div class="job fade-in">
       <div class="job-logo"><img id="logo-dutch" src="portfolio-images/dutch.png" alt="Dutch Pet"/></div>
       <div class="job-info">
-        <h3>Dutch Pet inc.</h3>
+        <h3>Dutch Pet Inc.</h3>
         <div class="role-title">Intern – Consumer Insights</div>
         <p>Supported UX and consumer research that informed product, service, and CX decisions. Worked on survey design, qualitative interviews, and research analysis to identify patterns in user needs and behaviors. Translated findings into insights that guided improvements in how people navigate, understand, and interact with a digital veterinary care platform.</p>
       </div>
@@ -185,7 +219,7 @@
       <div class="job-info">
         <h3>Procter &amp; Gamble</h3>
         <div class="role-title">Graduate Student Consultant – UX Research</div>
-        <p>Conducted mixed-methods UX research with cross-functional student teams, integrating qualitative and quantitative insights to inform product decisions and improve user-centered design. Designed and built a Figma prototype to support usability testing and validation, conducting user experience research to inform product decisions and improve user-centered design.</p>
+        <p>Conducted mixed-methods UX research with cross-functional student teams, integrating qualitative and quantitative insights to inform product decisions and improve user-centered design. Designed and built a Figma prototype to support usability testing and validation.</p>
       </div>
     </div>
 
@@ -215,7 +249,7 @@
         <h3>Building a Framework for AI Success: How Evaluation and Iteration Skills Shape the User Journey</h3>
         <div class="role-title">Graduate Student Consultant – UX Research</div>
         <p>Conducted a foundational UX research study on how new and experienced users learn to evaluate and iterate on AI-generated outputs. Led moderated interviews with 17 participants, developing the "AI Specificity Funnel" framework to explain how prompt specificity shapes evaluation and outcome quality, then translated findings into product recommendations for improving early-user onboarding and retention.</p>
-        <a class="project-link" href="https://drive.google.com/file/d/1qucka8n1oP9KzZl6oOiKQFcccQdKBs26/view?usp=drive_link" target="_blank">View Project →</a>
+        <a class="project-link" href="https://drive.google.com/file/d/1qucka8n1oP9KzZl6oOiKQFcccQdKBs26/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
       </div>
     </div>
 
@@ -225,7 +259,7 @@
         <h3>Charles Schwab <em>(Unaffiliated)</em></h3>
         <div class="role-title">Graduate Student Consultant – UX Research</div>
         <p>Conducted end-to-end usability testing on the Charles Schwab investing platform, identifying key friction points and cognitive overload in stock research and screening tools. Synthesized insights into actionable recommendations that improved navigation clarity, and presented findings to Schwab UX researchers.</p>
-        <a class="project-link" href="https://drive.google.com/file/d/1kec1qufytOWjNug-T5F5f0ClxEGIQOml/view?usp=drive_link" target="_blank">View Project →</a>
+        <a class="project-link" href="https://drive.google.com/file/d/1kec1qufytOWjNug-T5F5f0ClxEGIQOml/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
       </div>
     </div>
 
@@ -235,7 +269,7 @@
         <h3>Manipulating Consumer Agency to Boost Trust in AI-Driven Products</h3>
         <div class="role-title">Literature Review – University of Southern California</div>
         <p>Consumer trust in AI is often weakened by concerns about data privacy and loss of control. This literature review argues that increasing users' sense of agency—through design choices on AI product landing pages—can strengthen trust, perceived autonomy, and willingness to use AI tools.</p>
-        <a class="project-link" href="https://drive.google.com/file/d/1FJgdpG_R0frzHXorCDiKzRC8h9dchmzF/view?usp=drive_link" target="_blank">View Project →</a>
+        <a class="project-link" href="https://drive.google.com/file/d/1FJgdpG_R0frzHXorCDiKzRC8h9dchmzF/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
       </div>
     </div>
 
@@ -245,7 +279,7 @@
         <h3>Beyond the Coffee: Exploring Comfort, Routine, and Belonging at Starbucks</h3>
         <div class="role-title">Graduate Student Researcher – Consumer Insights | September–December</div>
         <p>Conducted a qualitative and ethnographic research study exploring how Starbucks' physical environment, customer experiences, and brand perceptions shape comfort, belonging, and loyalty. Collaborated on 12 in-depth interviews and 16 hours of ethnographic observation, comparing Starbucks with independent coffee shops. Identified a shift from Starbucks' traditional "third place" identity toward a convenience-driven experience, translating findings into actionable recommendations for improving store design, community engagement, and emotional connection with customers.</p>
-        <a class="project-link" href="https://drive.google.com/file/d/1PwUmMH0KYDCAn-HdNzB078LF1g50nOnX/view?usp=sharing" target="_blank">View Project →</a>
+        <a class="project-link" href="https://drive.google.com/file/d/1PwUmMH0KYDCAn-HdNzB078LF1g50nOnX/view?usp=sharing" target="_blank" rel="noopener">View Project →</a>
       </div>
     </div>
 
@@ -255,18 +289,18 @@
       <div class="job-info">
         <h3>PollDip</h3>
         <div class="role-title">Founder / Designer</div>
-        <p>A social polling app for teams. Drop a poll, settle a debate, and see what the room thinks—no surveys, no dashboards, no homework. Designed and built end to end with Next.js, Supabase, and Tailwind, featuring real-time vote counts, emoji reactions, comments, and invite-only workspaces. Currently a work in progress.</p>
-        <a class="project-link" href="https://polldip.vercel.app" target="_blank">View Site →</a>
+        <p>A social polling app for teams. Drop a poll, settle a debate, and see what the room thinks—no surveys, no dashboards, no homework. Designed and built end to end with Next.js, Supabase, and Tailwind, featuring real-time vote counts, emoji reactions, comments, and invite-only workspaces. Launched November 2026.</p>
+        <a class="project-link" href="https://polldip.com" target="_blank" rel="noopener">View Site →</a>
       </div>
     </div>
   </div>
   <footer class="site-footer">
-    <span class="copy">@2026</span>
-    <nav class="footer-links">
-      <a onclick="show('work')">Work</a>
-      <a onclick="show('about')">About</a>
-      <a onclick="show('about','contact')">Contact</a>
-      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
+    <span class="copy">© 2026 · California</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </footer>
 </div>
@@ -274,8 +308,12 @@
 <!-- ABOUT -->
 <div id="about" class="page">
   <header class="site-header">
-    <span class="name" onclick="show('home')">Ian Huntington</span>
-    <span class="location">California</span>
+    <a class="name" href="#home">Ian Huntington</a>
+    <nav class="header-links" aria-label="Main">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
   </header>
   <div class="content">
     <div class="section-label fade-in" style="margin-top:0;">About Ian</div>
@@ -320,14 +358,14 @@
       <div class="edu-logo"><img id="edu-usc" src="portfolio-images/usc.png" alt="USC"/></div>
       <div class="edu-info">
         <h4>University of Southern California</h4>
-        <p>Masters of Science – Applied (Consumer) Psychology (2025–2026)</p>
+        <p>Master of Science – Applied (Consumer) Psychology (2025–2026)</p>
       </div>
     </div>
     <div class="edu-item fade-in">
       <div class="edu-logo"><img id="edu-uofo" src="portfolio-images/uofo.png" alt="U of O"/></div>
       <div class="edu-info">
         <h4>University of Oregon</h4>
-        <p>Bachelors of Science – Psychology (2020–2024)</p>
+        <p>Bachelor of Science – Psychology (2020–2024)</p>
       </div>
     </div>
 
@@ -337,7 +375,7 @@
         <div class="contact-icon" style="background:#0A66C2;">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M16.667 2H3.333C2.597 2 2 2.597 2 3.333v13.334C2 17.403 2.597 18 3.333 18h13.334C17.403 18 18 17.403 18 16.667V3.333C18 2.597 17.403 2 16.667 2ZM6.667 15H4.444V8h2.223v7Zm-1.11-7.933a1.29 1.29 0 1 1 0-2.578 1.29 1.29 0 0 1 0 2.578ZM15.556 15H13.33v-3.4c0-.81-.016-1.852-1.127-1.852-1.13 0-1.302.882-1.302 1.793V15H8.667V8h2.133v.956h.03c.297-.563.99-1.127 1.985-1.127 2.124 0 2.741 1.397 2.741 3.214V15Z" fill="#fff"/></svg>
         </div>
-        <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
+        <a href="https://www.linkedin.com/in/ian-huntington" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <div class="contact-item">
         <div class="contact-icon" style="background:#fff;border:1px solid #ddd;">
@@ -348,46 +386,55 @@
     </div>
   </div>
   <footer class="site-footer">
-    <span class="copy">@2026</span>
-    <nav class="footer-links">
-      <a onclick="show('work')">Work</a>
-      <a onclick="show('about')">About</a>
-      <a onclick="show('about','contact')">Contact</a>
-      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank">Linkedin</a>
+    <span class="copy">© 2026 · California</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+      <a href="https://www.linkedin.com/in/ian-huntington" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </footer>
 </div>
 
 <script>
-// ── Cursor ──
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Cursor (mouse/trackpad only) ──
 const dot = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
-let ringX=0,ringY=0,mouseX=0,mouseY=0;
-document.addEventListener('mousemove',e=>{
-  mouseX=e.clientX; mouseY=e.clientY;
-  dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
-});
-(function animateRing(){
-  ringX+=(mouseX-ringX)*0.12; ringY+=(mouseY-ringY)*0.12;
-  ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
-  requestAnimationFrame(animateRing);
-})();
-function addHover(sel){
-  document.querySelectorAll(sel).forEach(el=>{
+if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  let ringX=0,ringY=0,mouseX=0,mouseY=0,started=false;
+  document.addEventListener('mousemove',e=>{
+    mouseX=e.clientX; mouseY=e.clientY;
+    if(!started){ringX=mouseX;ringY=mouseY;started=true;}
+    document.body.classList.add('cursor-visible');
+    dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
+  });
+  document.documentElement.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-visible'));
+  (function animateRing(){
+    ringX+=(mouseX-ringX)*0.12; ringY+=(mouseY-ringY)*0.12;
+    ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+    requestAnimationFrame(animateRing);
+  })();
+  document.querySelectorAll('a, button').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
   });
 }
-addHover('a, button, .btn, .name, .job');
 
 // ── Rain ──
 const canvas=document.getElementById('rain-canvas');
 const ctx=canvas.getContext('2d');
 let drops=[];
+let rainRunning=false;
 
 function resizeCanvas(){
-  canvas.width=canvas.parentElement.offsetWidth;
-  canvas.height=canvas.parentElement.offsetHeight;
+  const w=canvas.parentElement.offsetWidth, h=canvas.parentElement.offsetHeight;
+  if(!w||!h) return false; // hero is hidden; skip
+  if(w===canvas.width&&h===canvas.height) return true;
+  canvas.width=w; canvas.height=h;
+  initDrops();
+  return true;
 }
 function initDrops(){
   drops=[];
@@ -400,6 +447,7 @@ function initDrops(){
   }
 }
 function drawRain(){
+  if(!rainRunning) return;
   ctx.clearRect(0,0,canvas.width,canvas.height);
   drops.forEach(d=>{
     ctx.beginPath();
@@ -415,67 +463,98 @@ function drawRain(){
   });
   requestAnimationFrame(drawRain);
 }
-resizeCanvas(); initDrops(); drawRain();
-window.addEventListener('resize',()=>{resizeCanvas();initDrops();});
+function startRain(){
+  if(reduceMotion||rainRunning) return;
+  if(!resizeCanvas()) return;
+  rainRunning=true; requestAnimationFrame(drawRain);
+}
+function stopRain(){ rainRunning=false; }
+window.addEventListener('resize',()=>{ if(document.getElementById('home').classList.contains('active')) resizeCanvas(); });
 
 // ── Scroll fade-in ──
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
 },{threshold:0.1});
 function observeFadeIns(){
-  document.querySelectorAll('.fade-in:not(.visible)').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.page.active .fade-in:not(.visible)').forEach(el=>observer.observe(el));
 }
 
-// ── Page transitions ──
+// ── Routing (#home, #work, #about, #contact) ──
+const PAGES=['home','work','about'];
+function parseHash(){
+  const h=location.hash.replace('#','');
+  if(h==='contact') return {id:'about',anchor:'contact',nav:'contact'};
+  if(PAGES.includes(h)) return {id:h,anchor:null,nav:h};
+  return {id:'home',anchor:null,nav:'home'};
+}
+function setCurrentNav(nav){
+  document.querySelectorAll('[data-page]').forEach(a=>{
+    if(a.dataset.page===nav) a.setAttribute('aria-current','page');
+    else a.removeAttribute('aria-current');
+  });
+}
+function revealAnchor(anchor){
+  const el=document.getElementById(anchor);
+  // make sure everything up to the anchor is visible before jumping
+  document.querySelectorAll('.page.active .fade-in').forEach(f=>f.classList.add('visible'));
+  el.scrollIntoView({behavior:reduceMotion?'auto':'smooth'});
+}
+
 function show(id,anchor){
   const current=document.querySelector('.page.active');
   const next=document.getElementById(id);
   if(current===next){
-    if(anchor) document.getElementById(anchor).scrollIntoView({behavior:'smooth'});
+    if(anchor) revealAnchor(anchor); else window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
     return;
   }
-
-  if(current.id==='home'){
-    let t=0;
-    const slowDown=setInterval(()=>{
-      t++;
-      drops.forEach(d=>{d.speed=Math.max(d.speed-0.18,0);d.opacity=Math.max(d.opacity-0.008,0);});
-      if(t>60) clearInterval(slowDown);
-    },30);
-  }
-
-  current.style.transition='opacity 0.5s ease';
-  current.style.opacity='0';
-
-  setTimeout(()=>{
+  const swap=()=>{
     current.classList.remove('active');
     current.style.opacity=''; current.style.transition='';
     next.classList.add('active');
-    next.style.opacity='0';
-    next.style.transition='opacity 0.5s ease';
     window.scrollTo(0,0);
-    if(anchor) document.getElementById(anchor).scrollIntoView();
+    if(id==='home'){ startRain(); } else { stopRain(); }
     observeFadeIns();
+    if(anchor) revealAnchor(anchor);
+    if(id==='home') next.querySelector('h1').focus({preventScroll:true});
+    else next.querySelector('.section-label').focus({preventScroll:true});
+  };
+  if(reduceMotion){ swap(); return; }
 
-    if(id==='home'){
-      drops.forEach(d=>{d.speed=0;d.opacity=0;d.y=Math.random()*canvas.height;});
-      let t=0;
-      const buildUp=setInterval(()=>{
-        t++;
-        drops.forEach(d=>{d.speed=Math.min(d.speed+0.15,d.maxSpeed);d.opacity=Math.min(d.opacity+0.006,d.baseOpacity);});
-        if(t>80) clearInterval(buildUp);
-      },30);
-    }
-
+  current.style.transition='opacity 0.25s ease';
+  current.style.opacity='0';
+  setTimeout(()=>{
+    swap();
+    next.style.opacity='0';
+    next.style.transition='opacity 0.25s ease';
     requestAnimationFrame(()=>{
       next.style.opacity='1';
-      setTimeout(()=>{next.style.opacity='';next.style.transition='';},500);
+      setTimeout(()=>{next.style.opacity='';next.style.transition='';},250);
     });
-  },480);
+  },240);
 }
 
-// Initial fade-ins on load
-observeFadeIns();
+function route(){
+  const r=parseHash();
+  setCurrentNav(r.nav);
+  show(r.id,r.anchor);
+}
+window.addEventListener('hashchange',route);
+
+// headings receive focus after page switches (for keyboard/screen readers)
+document.querySelectorAll('.page h1, .page .content > .section-label:first-child').forEach(h=>{h.setAttribute('tabindex','-1');h.style.outline='none';});
+
+// Initial load
+(function init(){
+  const r=parseHash();
+  setCurrentNav(r.nav);
+  if(r.id!=='home'){
+    document.getElementById('home').classList.remove('active');
+    document.getElementById(r.id).classList.add('active');
+  }
+  observeFadeIns();
+  if(r.id==='home') startRain();
+  if(r.anchor) requestAnimationFrame(()=>revealAnchor(r.anchor));
+})();
 </script>
 </body>
 </html>
