@@ -41,19 +41,19 @@
   .header-links a:hover,.header-links a[aria-current="page"]{text-decoration:underline;}
 
   /* HERO */
-  #home .hero{flex:1;padding:40px 40px 60px;position:relative;display:flex;align-items:flex-start;overflow:hidden;}
+  #home .hero{flex:1;padding:40px 40px 72px;position:relative;display:flex;align-items:center;overflow:hidden;}
+  #home .hero-inner{position:relative;z-index:3;width:100%;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;}
   #rain-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;}
   #home .hero-text{position:relative;z-index:3;}
-  #home .hero h1{font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;}
+  #home .hero h1{font-size:clamp(40px,5.2vw,72px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;}
   #home .hero h1 em{font-style:italic;}
   #home .hero .role{font-size:18px;color:#444;margin-bottom:32px;}
   .hero-btns{display:flex;gap:12px;}
   .btn{display:inline-flex;align-items:center;justify-content:center;min-width:96px;padding:10px 24px;border:1.5px solid var(--black);background:transparent;color:var(--black);text-decoration:none;font-size:14px;font-weight:600;border-radius:999px;transition:background .2s,color .2s;}
   .btn:hover{background:var(--black);color:#fff;}
-  #home .hero-illustration{position:absolute;right:100px;top:-10px;bottom:0;display:flex;align-items:center;z-index:3;}
-  #home .hero-illustration img{height:420px;width:auto;}
-  @media(max-width:900px){#home .hero-illustration{right:20px;} #home .hero-illustration img{height:320px;}}
-  @media(max-width:700px){#home .hero-illustration{right:10px;} #home .hero-illustration img{height:240px;}}
+  #home .hero-illustration{flex-shrink:0;display:flex;align-items:center;}
+  #home .hero-illustration img{height:min(420px,58vh);width:auto;display:block;}
+  @media(max-width:900px){#home .hero-illustration img{height:320px;}}
 
   /* FOOTER */
   .site-footer{background:#d4d4d4;padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative;z-index:10;}
@@ -314,9 +314,9 @@
     .site-header{flex-wrap:wrap;gap:8px;}
     .site-footer{flex-direction:column-reverse;align-items:flex-start;gap:12px;}
     .footer-links{flex-wrap:wrap;gap:20px;}
-    #home .hero{flex-direction:column;align-items:center;}
-    #home .hero-text{align-self:flex-start;}
-    #home .hero-illustration{position:relative;right:auto;top:auto;bottom:auto;justify-content:center;margin-top:24px;}
+    #home .hero{padding:32px 20px 40px;}
+    #home .hero-inner{flex-direction:column;align-items:flex-start;gap:28px;}
+    #home .hero-illustration{align-self:center;}
     #home .hero-illustration img{height:280px;}
     .bio-grid{grid-template-columns:1fr;}
     .bio-photos{position:static;align-items:center;}
@@ -343,16 +343,18 @@
   </header>
   <div class="hero">
     <canvas id="rain-canvas"></canvas>
-    <div class="hero-text">
-      <h1>Building Through <em>Research</em></h1>
-      <p class="role">User Researcher – Product, Design, and Human Factors</p>
-      <div class="hero-btns">
-        <a class="btn" href="#work">Work</a>
-        <a class="btn" href="#about">About</a>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Building Through <em>Research</em></h1>
+        <p class="role">User Researcher – Product, Design, and Human Factors</p>
+        <div class="hero-btns">
+          <a class="btn" href="#work">Work</a>
+          <a class="btn" href="#about">About</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-illustration">
-      <img src="portfolio-images/hero-avatar.png" alt="Illustration of Ian" style="mix-blend-mode:multiply;"/>
+      <div class="hero-illustration">
+        <img src="portfolio-images/hero-avatar.png" alt="Illustration of Ian" style="mix-blend-mode:multiply;"/>
+      </div>
     </div>
   </div>
   <footer class="site-footer">
@@ -385,7 +387,7 @@
               <p class="case-takeaway"><strong>Takeaway:</strong> New users often accepted AI responses that fell short of their own needs, while experienced users evaluated them against clearer goals.</p>
               <div class="case-actions">
               <button class="details-toggle" aria-haspopup="dialog" data-details="details-1">Show details</button>
-              <a class="project-link" href="https://drive.google.com/file/d/1qucka8n1oP9KzZl6oOiKQFcccQdKBs26/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
+              <a class="project-link" href="https://drive.google.com/file/d/1qucka8n1oP9KzZl6oOiKQFcccQdKBs26/view?usp=drive_link" target="_blank" rel="noopener">View Project</a>
             </div>
             </div>
             <div class="case-visual">
@@ -411,7 +413,7 @@
               <p class="case-takeaway"><strong>Takeaway:</strong> Unclear navigation labels and filter behavior made it harder for participants to find and compare stocks.</p>
               <div class="case-actions">
               <button class="details-toggle" aria-haspopup="dialog" data-details="details-2">Show details</button>
-              <a class="project-link" href="https://drive.google.com/file/d/1kec1qufytOWjNug-T5F5f0ClxEGIQOml/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
+              <a class="project-link" href="https://drive.google.com/file/d/1kec1qufytOWjNug-T5F5f0ClxEGIQOml/view?usp=drive_link" target="_blank" rel="noopener">View Project</a>
             </div>
             </div>
             <div class="case-visual">
@@ -437,7 +439,7 @@
               <p class="case-takeaway"><strong>Takeaway:</strong> Customers relied on Starbucks for convenience and consistency, but missed the comfort and connection they found at local cafés.</p>
               <div class="case-actions">
               <button class="details-toggle" aria-haspopup="dialog" data-details="details-3">Show details</button>
-              <a class="project-link" href="https://drive.google.com/file/d/1PwUmMH0KYDCAn-HdNzB078LF1g50nOnX/view?usp=sharing" target="_blank" rel="noopener">View Project →</a>
+              <a class="project-link" href="https://drive.google.com/file/d/1PwUmMH0KYDCAn-HdNzB078LF1g50nOnX/view?usp=sharing" target="_blank" rel="noopener">View Project</a>
             </div>
             </div>
             <div class="case-visual" role="img" aria-label="Photo inside a Starbucks café, with a callout: third place crossed out, thru-place">
@@ -466,7 +468,7 @@
               <p class="case-takeaway"><strong>Takeaway:</strong> The literature suggests that meaningful choices and control over personal data could help build trust in AI products.</p>
               <div class="case-actions">
               <button class="details-toggle" aria-haspopup="dialog" data-details="details-4">Show details</button>
-              <a class="project-link" href="https://drive.google.com/file/d/1FJgdpG_R0frzHXorCDiKzRC8h9dchmzF/view?usp=drive_link" target="_blank" rel="noopener">View Project →</a>
+              <a class="project-link" href="https://drive.google.com/file/d/1FJgdpG_R0frzHXorCDiKzRC8h9dchmzF/view?usp=drive_link" target="_blank" rel="noopener">View Project</a>
             </div>
             </div>
             <div class="case-visual" role="img" aria-label="Diagram, themes from the literature: meaningful choices, data transparency and privacy controls build perceived control, which may support trust in AI">
@@ -537,7 +539,7 @@
           <p class="product-tagline">A simple way to poll your group, settle debates, and see what everyone thinks.</p>
           <div class="case-actions">
             <button class="details-toggle" aria-haspopup="dialog" data-details="details-pd">Show details</button>
-            <a class="project-link" href="https://polldip.com" target="_blank" rel="noopener">View Site →</a>
+            <a class="project-link" href="https://polldip.com" target="_blank" rel="noopener">View Site</a>
           </div>
         </div>
         <div class="case-phones">
